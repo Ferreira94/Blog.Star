@@ -2,12 +2,15 @@ import { Box, useBreakpointValue } from '@chakra-ui/react';
 import Head from 'next/head';
 import { Header } from '../components/Header';
 import { PreviewPost } from '../components/PreviewPost';
+import { createClient } from '../services/prismic';
 
-export default function Home() {
+export default function Home({ posts }) {
   const isWideVersion = useBreakpointValue({
     base: false,
     sm: true,
   });
+
+  console.log(posts);
 
   return (
     <>
@@ -23,4 +26,16 @@ export default function Home() {
       </Box>
     </>
   );
+}
+
+export async function getStaticProps({ previewData }) {
+  const client = createClient({ previewData });
+
+  const posts = await client.getAllByType('posts');
+
+  console.log(posts);
+
+  return {
+    props: { posts },
+  };
 }
