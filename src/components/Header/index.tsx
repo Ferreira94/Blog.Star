@@ -11,14 +11,14 @@ export function Header() {
     <Flex
       justifyContent="space-between"
       alignItems="center"
-      maxW={1120}
+      maxW={970}
       mx="auto"
       px={isWideVersion ? 10 : 5}
       py={6}
       as="header"
     >
       <Link href="/">
-        <Image src="logo.svg" h="5" />
+        <Image src="/images/logo.svg" h="5" />
       </Link>
 
       <HeaderButton />

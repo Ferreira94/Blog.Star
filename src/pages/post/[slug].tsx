@@ -48,7 +48,7 @@ export default function Post({ post }: PostProps) {
   return (
     <>
       <Head>
-        <title>post.title | Blog.Star</title>
+        <title>{post.data.title} | Blog.Star</title>
       </Head>
       <Header />
 
@@ -61,11 +61,11 @@ export default function Post({ post }: PostProps) {
         <Image src={post.data.banner.url} m="0 auto" />
 
         <Box as="article" mt="10">
-          <Text fontSize="2xl" fontWeight="700">
+          <Text fontSize="3xl" fontWeight="700">
             {post.data.title}
           </Text>
 
-          <Flex my="3">
+          <Flex my="1">
             <Flex alignItems="center">
               <Icon as={RiCalendarLine} mr="1" />
               <Text>
@@ -83,7 +83,7 @@ export default function Post({ post }: PostProps) {
           <Box>
             {post.data.content.map(content => (
               <Box key={content.heading}>
-                <Text fontSize="xl" fontWeight="700" mt="3" mb="1">
+                <Text fontSize="2xl" fontWeight="700" mt="10" mb="2">
                   {content.heading}
                 </Text>
                 <Box

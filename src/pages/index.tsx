@@ -27,7 +27,7 @@ export default function Home({ posts }: PostProps) {
   return (
     <>
       <Head>
-        <title>Blog.Star | Página Inicial</title>
+        <title>Página Inicial | Blog.Star</title>
       </Head>
       <Header />
 

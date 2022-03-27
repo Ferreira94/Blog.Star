@@ -24,7 +24,7 @@ export function PreviewPost({ uid, first_publication_date, data }: Post) {
   return (
     <Link href={`/post/${uid}`}>
       <Box maxW={720} m="0 auto" mb="14">
-        <Text fontSize="2xl" fontWeight="700">
+        <Text fontSize="3xl" fontWeight="700">
           {data.title}
         </Text>
         <Text mt="0.5" mb="4">
