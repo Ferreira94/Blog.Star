@@ -19,7 +19,6 @@ interface PostProps {
 }
 
 export default function Home({ posts }: PostProps) {
-  console.log(posts);
   const isWideVersion = useBreakpointValue({
     base: false,
     sm: true,
@@ -32,7 +31,12 @@ export default function Home({ posts }: PostProps) {
       </Head>
       <Header />
 
-      <Box maxW={1120} px={20} mx="auto" my={isWideVersion ? 20 : 10}>
+      <Box
+        maxW={1120}
+        px={isWideVersion ? 20 : 5}
+        mx="auto"
+        my={isWideVersion ? 10 : 5}
+      >
         {posts.map(post => {
           return (
             <PreviewPost

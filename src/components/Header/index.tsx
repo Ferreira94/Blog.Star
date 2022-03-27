@@ -1,19 +1,25 @@
-import { Box, Flex } from '@chakra-ui/react';
+import { Flex, Image, Link, useBreakpointValue } from '@chakra-ui/react';
 import { HeaderButton } from './Button';
-import { Logo } from './Logo';
 
 export function Header() {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    sm: true,
+  });
+
   return (
     <Flex
       justifyContent="space-between"
       alignItems="center"
       maxW={1120}
       mx="auto"
-      px={10}
+      px={isWideVersion ? 10 : 5}
       py={6}
       as="header"
     >
-      <Logo />
+      <Link href="/">
+        <Image src="logo.svg" h="5" />
+      </Link>
 
       <HeaderButton />
     </Flex>

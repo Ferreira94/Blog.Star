@@ -21,11 +21,6 @@ interface Post {
 }
 
 export function PreviewPost({ uid, first_publication_date, data }: Post) {
-  const isWideVersion = useBreakpointValue({
-    base: false,
-    sm: true,
-  });
-
   return (
     <Link href={`/post/${uid}`}>
       <Box maxW={720} m="0 auto" mb="14">
@@ -35,7 +30,7 @@ export function PreviewPost({ uid, first_publication_date, data }: Post) {
         <Text mt="0.5" mb="4">
           {data.subtitle}
         </Text>
-        <Flex flexDirection={isWideVersion ? 'row' : 'column'}>
+        <Flex>
           <Flex alignItems="center" mr="5">
             <Icon as={RiCalendarLine} mr="1" />
             <Text>

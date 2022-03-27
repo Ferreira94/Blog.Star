@@ -10,6 +10,8 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import { RiCalendarLine, RiUserLine } from 'react-icons/ri';
 import { RichText } from 'prismic-dom';
+import { format } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
 import { Header } from '../../components/Header';
 
@@ -50,34 +52,47 @@ export default function Post({ post }: PostProps) {
       </Head>
       <Header />
 
-      <Box maxW={1120} px={20} mx="auto" my={isWideVersion ? 20 : 10}>
+      <Box
+        maxW={1120}
+        px={isWideVersion ? 20 : 5}
+        mx="auto"
+        my={isWideVersion ? 10 : 5}
+      >
         <Image src={post.data.banner.url} m="0 auto" />
 
-        <Box as="article">
-          <Text>{post.data.title}</Text>
+        <Box as="article" mt="10">
+          <Text fontSize="2xl" fontWeight="700">
+            {post.data.title}
+          </Text>
+
+          <Flex my="3">
+            <Flex alignItems="center">
+              <Icon as={RiCalendarLine} mr="1" />
+              <Text>
+                {format(new Date(post.first_publication_date), 'dd MMM yyyy', {
+                  locale: ptBR,
+                })}
+              </Text>
+            </Flex>
+            <Flex alignItems="center">
+              <Icon as={RiUserLine} mr="1" ml="6" />
+              <Text>{post.data.author}</Text>
+            </Flex>
+          </Flex>
+
           <Box>
-            <Box>
-              <Flex>
-                <Icon as={RiCalendarLine} />
-                <Text>{post.first_publication_date}</Text>
-              </Flex>
-              <Flex>
-                <Icon as={RiUserLine} />
-                <Text>{post.data.author}</Text>
-              </Flex>
-              <Box>
-                {post.data.content.map(content => (
-                  <>
-                    <Text>{content.heading}</Text>
-                    <Box
-                      dangerouslySetInnerHTML={{
-                        __html: RichText.asHtml(content.body),
-                      }}
-                    ></Box>
-                  </>
-                ))}
+            {post.data.content.map(content => (
+              <Box key={content.heading}>
+                <Text fontSize="xl" fontWeight="700" mt="3" mb="1">
+                  {content.heading}
+                </Text>
+                <Box
+                  dangerouslySetInnerHTML={{
+                    __html: RichText.asHtml(content.body),
+                  }}
+                ></Box>
               </Box>
-            </Box>
+            ))}
           </Box>
         </Box>
       </Box>
@@ -96,8 +111,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       },
     };
   });
-
-  console.log(paths);
 
   return {
     paths,
@@ -125,8 +138,6 @@ export const getStaticProps: GetStaticProps = async context => {
       content: response.data.content,
     },
   };
-
-  console.log(post);
 
   return {
     props: { post },
