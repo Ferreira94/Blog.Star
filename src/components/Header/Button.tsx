@@ -26,7 +26,8 @@ export function HeaderButton() {
   if (session) {
     return (
       <Button
-        colorScheme="yellow"
+        bgColor="yellow.300"
+        color="#000"
         onClick={() => signOut()}
         rightIcon={<Icon as={RiCloseCircleLine} h="6" w="6" />}
       >
@@ -43,7 +44,8 @@ export function HeaderButton() {
 
   return (
     <Button
-      colorScheme="yellow"
+      bgColor="yellow.300"
+      color="#000"
       variant="outline"
       onClick={() => signIn()}
       leftIcon={<Icon as={FcGoogle} w={5} h={5} />}

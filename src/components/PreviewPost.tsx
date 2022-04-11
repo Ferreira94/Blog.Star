@@ -1,11 +1,4 @@
-import {
-  Flex,
-  Box,
-  Text,
-  Icon,
-  useBreakpointValue,
-  Link,
-} from '@chakra-ui/react';
+import { Flex, Box, Text, Icon, Link } from '@chakra-ui/react';
 import { RiCalendarLine, RiUserLine } from 'react-icons/ri';
 import { format } from 'date-fns';
 import { ptBR } from 'date-fns/locale';

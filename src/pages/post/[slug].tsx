@@ -16,8 +16,10 @@ import { ptBR } from 'date-fns/locale';
 import { Header } from '../../components/Header';
 
 import { createClient } from '../../services/prismic';
+import { ActiveLink } from '../../components/ActiveLink';
 
 interface Post {
+  uid: string;
   first_publication_date: string | null;
   last_publication_date: string;
   data: {
@@ -52,6 +54,30 @@ export default function Post({ post }: PostProps) {
       </Head>
       <Header />
 
+      <Flex
+        justifyContent="space-between"
+        alignItems="center"
+        maxW={500}
+        mx="auto"
+        px={isWideVersion ? 10 : 5}
+        pt={6}
+        as="header"
+      >
+        <ActiveLink href={'/'}>
+          <Text fontSize="2xl" fontWeight="700" cursor="pointer">
+            Histórias
+          </Text>
+        </ActiveLink>
+        <Text fontSize="2xl" fontWeight="700">
+          /
+        </Text>
+        <ActiveLink href={post.uid}>
+          <Text fontSize="2xl" fontWeight="700" cursor="pointer">
+            {post.data.title}
+          </Text>
+        </ActiveLink>
+      </Flex>
+
       <Box
         maxW={1120}
         px={isWideVersion ? 20 : 5}
@@ -80,7 +106,7 @@ export default function Post({ post }: PostProps) {
             </Flex>
           </Flex>
 
-          <Box>
+          <Box textAlign="justify">
             {post.data.content.map(content => (
               <Box key={content.heading}>
                 <Text fontSize="2xl" fontWeight="700" mt="10" mb="2">

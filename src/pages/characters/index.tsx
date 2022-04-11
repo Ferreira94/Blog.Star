@@ -1,27 +1,26 @@
-import { Box, Flex, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Flex, Image, Text, useBreakpointValue } from '@chakra-ui/react';
 import Head from 'next/head';
 
-import { Header } from '../components/Header';
-import { PreviewPost } from '../components/PreviewPost';
-import { ActiveLink } from '../components/ActiveLink';
+import { ActiveLink } from '../../components/ActiveLink';
+import { Card } from '../../components/Card';
+import { Header } from '../../components/Header';
+import { createClient } from '../../services/prismic';
 
-import { createClient } from '../services/prismic';
-
-interface Post {
-  uid?: string;
-  first_publication_date: string | null;
+interface Character {
+  uid: string;
   data: {
-    title: string;
-    subtitle: string;
-    author: string;
+    name: string;
+    breed: string;
+    category: string;
+    thumbnail: string;
   };
 }
 
-interface PostProps {
-  posts: Post[];
+interface CharacterProps {
+  characters: Character[];
 }
 
-export default function Home({ posts }: PostProps) {
+export default function Home({ characters }: CharacterProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
     sm: true,
@@ -37,6 +36,7 @@ export default function Home({ posts }: PostProps) {
       <Flex
         justifyContent="center"
         alignItems="center"
+        maxW={500}
         mx="auto"
         px={isWideVersion ? 10 : 5}
         py={6}
@@ -57,23 +57,24 @@ export default function Home({ posts }: PostProps) {
         </ActiveLink>
       </Flex>
 
-      <Box
+      <Flex
         maxW={1120}
         px={isWideVersion ? 20 : 5}
         mx="auto"
         my={isWideVersion ? 10 : 5}
+        justifyContent="center"
+        flexWrap="wrap"
       >
-        {posts.map(post => {
+        {characters.map(character => {
           return (
-            <PreviewPost
-              key={post.uid}
-              data={post.data}
-              first_publication_date={post.first_publication_date}
-              uid={post.uid}
+            <Card
+              key={character.uid}
+              uid={character.uid}
+              data={character.data}
             />
           );
         })}
-      </Box>
+      </Flex>
     </>
   );
 }
@@ -81,21 +82,23 @@ export default function Home({ posts }: PostProps) {
 export async function getStaticProps({ previewData }) {
   const client = createClient({ previewData });
 
-  const postsResponse = await client.getAllByType('posts');
+  const charactersResponse = await client.getAllByType('characters');
 
-  const posts = postsResponse.map(post => {
+  const characters = charactersResponse.map(character => {
     return {
-      uid: post.uid,
-      first_publication_date: post.first_publication_date,
+      uid: character.uid,
       data: {
-        title: post.data.title,
-        subtitle: post.data.subtitle,
-        author: post.data.author,
+        name: character.data.name,
+        breed: character.data.breed,
+        category: character.data.category,
+        thumbnail: character.data.thumbnail.url,
       },
     };
   });
 
+  console.log(characters);
+
   return {
-    props: { posts },
+    props: { characters },
   };
 }
