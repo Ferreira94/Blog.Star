@@ -84,7 +84,9 @@ export default function Character({ character }: CharacterProps) {
             fontWeight="700"
             cursor="pointer"
           >
-            {character.data.name}
+            {character.data.name.length > 16
+              ? character.data.name.substring(0, 16) + '...'
+              : character.data.name}
           </Text>
         </ActiveLink>
       </Flex>
@@ -107,28 +109,7 @@ export default function Character({ character }: CharacterProps) {
               {character.data.name}
             </Text>
 
-            <Box>
-              <Flex alignItems="center">
-                <Icon as={RiCalendarLine} mr="1" />
-                <Text fontSize={isWideVersion ? 'md' : 'sm'}>
-                  {format(
-                    new Date(character.first_publication_date),
-                    'dd MMM yyyy',
-                    {
-                      locale: ptBR,
-                    }
-                  )}
-                </Text>
-              </Flex>
-              <Flex alignItems="center">
-                <Icon as={RiUserLine} mr="1" />
-                <Text fontSize={isWideVersion ? 'md' : 'sm'}>
-                  {character.data.author}
-                </Text>
-              </Flex>
-            </Box>
-
-            <Box maxW={isWideVersion ? '250' : '230'} mt="10">
+            <Box maxW={isWideVersion ? '250' : '230'} mt="5">
               {character.data.quote.map(content => (
                 <Text fontSize={isWideVersion ? 'md' : 's'}>
                   {content.text}
