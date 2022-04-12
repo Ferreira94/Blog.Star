@@ -102,7 +102,7 @@ export default function Character({ character }: CharacterProps) {
             maxH={isWideVersion ? '450' : '250'}
           />
 
-          <Box ml={isWideVersion ? '20' : '10'}>
+          <Box ml={isWideVersion ? '20' : '5'}>
             <Text fontSize={isWideVersion ? 'xl' : 'md'} fontWeight="700">
               {character.data.name}
             </Text>
