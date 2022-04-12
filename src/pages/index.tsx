@@ -43,15 +43,23 @@ export default function Home({ posts }: PostProps) {
         as="header"
       >
         <ActiveLink href={'/'}>
-          <Text fontSize="2xl" fontWeight="700" cursor="pointer" mx="10">
+          <Text
+            fontSize={isWideVersion ? 'xl' : 'md'}
+            fontWeight="700"
+            cursor="pointer"
+          >
             Histórias
           </Text>
         </ActiveLink>
-        <Text fontSize="2xl" fontWeight="700">
+        <Text fontSize={isWideVersion ? 'xl' : 'md'} fontWeight="700" mx="3">
           /
         </Text>
         <ActiveLink href={'/characters'}>
-          <Text fontSize="2xl" fontWeight="700" cursor="pointer" mx="10">
+          <Text
+            fontSize={isWideVersion ? 'xl' : 'md'}
+            fontWeight="700"
+            cursor="pointer"
+          >
             Personagens
           </Text>
         </ActiveLink>

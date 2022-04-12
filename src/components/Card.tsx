@@ -12,17 +12,19 @@ interface Character {
 
 export function Card({ uid, data }: Character) {
   return (
-    <Link href={`/characters/${uid}`} textAlign="center" m="10">
-      <Box maxW={200} bgColor="yellow.500" borderRadius="100">
+    <Link href={`/characters/${uid}`} textAlign="center" mx="10" maxW={180}>
+      <Box w={180} bgColor="yellow.500" borderRadius="100">
         <Image
           src={data.thumbnail}
-          maxW={200}
+          w={180}
           h={250}
           borderRadius="100"
           p={0.5}
         />
       </Box>
-      <Text color="gray.300">{data.name}</Text>
+      <Text color="gray.300" mb="10">
+        {data.name}
+      </Text>
     </Link>
   );
 }

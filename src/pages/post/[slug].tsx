@@ -55,24 +55,31 @@ export default function Post({ post }: PostProps) {
       <Header />
 
       <Flex
-        justifyContent="space-between"
+        justifyContent="center"
         alignItems="center"
-        maxW={500}
         mx="auto"
         px={isWideVersion ? 10 : 5}
         pt={6}
         as="header"
       >
         <ActiveLink href={'/'}>
-          <Text fontSize="2xl" fontWeight="700" cursor="pointer">
+          <Text
+            fontSize={isWideVersion ? 'xl' : 'md'}
+            fontWeight="700"
+            cursor="pointer"
+          >
             Histórias
           </Text>
         </ActiveLink>
-        <Text fontSize="2xl" fontWeight="700">
+        <Text fontSize={isWideVersion ? 'xl' : 'md'} fontWeight="700" mx="2">
           /
         </Text>
         <ActiveLink href={post.uid}>
-          <Text fontSize="2xl" fontWeight="700" cursor="pointer">
+          <Text
+            fontSize={isWideVersion ? 'xl' : 'md'}
+            fontWeight="700"
+            cursor="pointer"
+          >
             {post.data.title}
           </Text>
         </ActiveLink>
