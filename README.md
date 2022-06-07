@@ -37,7 +37,7 @@ $ git clone https://github.com/Ferreira94/Blog.Star.git
 # Vá para a pasta do projeto
 $ cd blogstar
 # Instale as depedencias
-$ yarn install
+$ yarn
 # Rode a aplicação
 $ yarn dev
 ```
