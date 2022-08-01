@@ -32,7 +32,7 @@ Este projeto foi feito utilizando as seguintes tecnologias:
 
 ```bash
 # Clone o Repositório
-$ https://github.com/Ferreira94/Blog.Star.git
+$ git clone https://github.com/Ferreira94/Blog.Star.git
 ```
 
 ```bash
